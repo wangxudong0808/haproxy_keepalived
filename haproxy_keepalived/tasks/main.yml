@@ -1,0 +1,44 @@
+---
+# tasks file for haproxy_keepalived
+- name: install haproxy keeplived
+  yum:
+        name: "{{ item }}"
+        state: present
+  loop:
+        - haproxy
+        - keepalived
+
+- name: push haproxy
+  copy:
+        src: haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+
+- name: push keepalived
+  template:
+        src: keepalived.conf
+        dest: /etc/keepalived/keepalived.conf
+
+- name: push check_mysql.sh
+  copy:
+        src: check_mysql.sh
+        dest: /etc/keepalived/check_mysql.sh
+
+- name: start server
+  service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+  loop:
+        - haproxy
+        - keepalived
+
+
+
+
+
+
+
+
+
+
+

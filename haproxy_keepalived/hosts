@@ -1,0 +1,8 @@
+[nginx]
+192.168.7.19 ansible_ssh_user="root" ansible_ssh_pass="1" ansible_ssh_port="22"
+192.168.7.20 ansible_ssh_user="root" ansible_ssh_pass="1" ansible_ssh_port="22"
+
+[LB]
+
+192.168.7.19 ansible_ssh_user="root" ansible_ssh_pass="1" ansible_ssh_port="22" state="MASTER" priority=100
+192.168.7.20 ansible_ssh_user="root" ansible_ssh_pass="1" ansible_ssh_port="22" state="BACKUP" priority=50
